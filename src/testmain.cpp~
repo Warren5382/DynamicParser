@@ -12,7 +12,7 @@ int main(int argc, const char *argv[])
 {
 	DiskSourceTree sourceTree;
 	//look up .proto file in current directory
-	sourceTree.MapPath("", "./proto");
+	sourceTree.MapPath("", "./");
 	Importer importer(&sourceTree, NULL);
 	//runtime compile foo.proto
 	importer.Import("foo.proto");
