@@ -4,6 +4,17 @@ DynamicParser::DynamicParser()
 {
 }
 
+int DynamicParser::init(const char* protoname, const char* protopath)
+{
+	DiskSourceTree sourceTree;
+	// find proto file in current directory
+	sourceTree.MapPath("", protopath);
+	// import proto file
+	Importer importer(&sourceTree, NULL);
+	importer.Import(protoname);
+	return 0;
+}
+
 DynamicParser::~DynamicParser()
 {
 }
@@ -55,5 +66,11 @@ int DynamicParser::getfieldvalue(
 				break;
 			}
 int DynamicParserdoparser() {
+	std::queue<LogNode> BFSqueue;
+	LogNode now;
+	LogNode next;
+	BFSqueue.push_back(now);
+	while (!BFSqueue.empty()) {
+
 
 }

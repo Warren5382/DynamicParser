@@ -71,6 +71,16 @@ int DynamicParserdoparser() {
 	LogNode next;
 	BFSqueue.push_back(now);
 	while (!BFSqueue.empty()) {
+		now = BFSqueue.front();
+		// get now node value
+		// to be done
+
+		// search next node
+		std::vector<std::string> &nextfieldcontainer = pathmap[now.name];
+		int leefsize = nextfieldcontainer.size();
+		for (int index = 0; index < leefsize; index++) {
+			next.name = nextfieldcontainer[index];
+			
 
 
 }
