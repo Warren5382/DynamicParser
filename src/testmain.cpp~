@@ -87,7 +87,7 @@ int getvalue(google::protobuf::Message *message,
 			}
 		case FieldDescriptor::TYPE_MESSAGE:
 			{
-				Message* val = reflection->MutableMessage(*message, descriptor);
+				Message* val = reflection->MutableMessage(message, descriptor);
 				std::cout << "is a message" << std::endl;
 				result->setMessage(val);
 				break;
