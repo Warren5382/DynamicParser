@@ -108,7 +108,7 @@ int main(int argc, const char *argv[])
 	//importer.Import("houyi_res_pblog.proto");
 	//importer.Import("im_res_pblog.proto");
 	//importer.Import("siva_res_pblog.proto");
-	//importer.Import("wise_req_pblog.proto");
+//importer.Import("wise_req_pblog.proto");
 	//                 
 	const Descriptor *descriptor = importer.pool()->FindMessageTypeByName("b2log.BaiduLog");
 	std::vector<const Descriptor *> descriptorcontainer;
@@ -161,7 +161,7 @@ int main(int argc, const char *argv[])
 
 	std::cout << "#######province_id is " << result.getUint32() << std::endl;
 	//reflection->SetString(baidulog, field, "my key");
-	//field = descriptor->FindFieldByName("value");
+	//field = descroptor->FindFieldByName("value");
 	//reflection->SetUInt32(baidulog, field, 1111);
 
 

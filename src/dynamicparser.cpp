@@ -65,6 +65,9 @@ int DynamicParser::getfieldvalue(
 				std::cout << "value is " << val << std::endl;
 				break;
 			}
+	}
+}
+
 int DynamicParserdoparser() {
 	std::queue<LogNode> BFSqueue;
 	LogNode now;
@@ -77,10 +80,15 @@ int DynamicParserdoparser() {
 
 		// search next node
 		std::vector<std::string> &nextfieldcontainer = pathmap[now.name];
+		const Descriptor *fatherDescriptor = descriptor[now.name];
 		int leefsize = nextfieldcontainer.size();
 		for (int index = 0; index < leefsize; index++) {
 			next.name = nextfieldcontainer[index];
-			
-
-
+			next.descriptor = fatherDescriptor;
+			next.field = fatherDescriptor->GetFieldByName(next.name);
+			next.reflection = now.value->GetReflection();
+			next.value = getfieldvalue(now.value, next.field, next.descriptor, 0);
+		}
+		BFSqueue.pop();
+	}
 }
