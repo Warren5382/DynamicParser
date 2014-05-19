@@ -68,7 +68,7 @@ int DynamicParser::getfieldvalue(
 	}
 }
 
-int DynamicParserdoparser() {
+int DynamicParser::doparser() {
 	std::queue<LogNode> BFSqueue;
 	LogNode now;
 	LogNode next;
@@ -79,16 +79,23 @@ int DynamicParserdoparser() {
 		// to be done
 
 		// search next node
-		std::vector<std::string> &nextfieldcontainer = pathmap[now.name];
-		const Descriptor *fatherDescriptor = descriptor[now.name];
-		int leefsize = nextfieldcontainer.size();
+		std::vector<DescrpNode> &sondescrpcontainer = DescrpMap[now.name];
+		int leefsize = sondescrpcontainer.size();
 		for (int index = 0; index < leefsize; index++) {
-			next.name = nextfieldcontainer[index];
-			next.descriptor = fatherDescriptor;
-			next.field = fatherDescriptor->GetFieldByName(next.name);
-			next.reflection = now.value->GetReflection();
-			next.value = getfieldvalue(now.value, next.field, next.descriptor, 0);
+			DescrpNode &sondescrp = sondescrpcontainer[index];
+			next.name = sondescrp.name;
+			// because the fathernode must be of message type
+			// while basic type like int mush be a leef node
+			next.reflection = get<Message *>(now.value)->GetReflection();
+			// get nextnode value
+			next.value = getfieldvalue(get<Message *>(now.value), sondescrp.field, next.reflection, 0);
+			// if the next node's type is Message,
+			// this node will be pushed into queue
+			if (next.value.type() == typeid(Message *)) {
+				BFSqueue.push_back(next);
+			}
 		}
 		BFSqueue.pop();
 	}
+	return 0;
 }

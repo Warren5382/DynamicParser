@@ -86,9 +86,9 @@ int DynamicParserdoparser() {
 			next.name = nextfieldcontainer[index];
 			next.descriptor = fatherDescriptor;
 			next.field = fatherDescriptor->GetFieldByName(next.name);
-			next.reflection = next.fi
-
-			
-
-
+			next.reflection = now.value->GetReflection();
+			next.value = getfieldvalue(now.value, next.field, next.descriptor, 0);
+		}
+		BFSqueue.pop();
+	}
 }
